@@ -27,7 +27,7 @@ jobs:
 
       - name: Install frontend dependencies
         working-directory: frontend
-        run: npm install 
+        run: npm install
 
       - name: Build frontend (static export)
         working-directory: frontend
@@ -43,12 +43,18 @@ jobs:
         working-directory: backend
         run: pyinstaller --onefile --name backend-sidecar main.py
 
+      - name: Rename sidecar to Tauri's required target-triple format
+        working-directory: backend
+        run: |
+          $triple = "x86_64-pc-windows-msvc"
+          Rename-Item -Path "dist\backend-sidecar.exe" -NewName "backend-sidecar-$triple.exe"
+
       - name: Install Tauri CLI
         run: npm install -g @tauri-apps/cli
 
       - name: Build Tauri app
         working-directory: src-tauri
-        run: tauri build
+        run: tauri build --verbose
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
