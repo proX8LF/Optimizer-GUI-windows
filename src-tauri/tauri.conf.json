@@ -4,7 +4,6 @@
   "identifier": "com.optimizergui.app",
   "build": {
     "beforeDevCommand": "npm run dev --prefix ../frontend",
-    "beforeBuildCommand": "npm run build --prefix ../frontend",
     "devUrl": "http://localhost:1420",
     "frontendDist": "../frontend/out"
   },
