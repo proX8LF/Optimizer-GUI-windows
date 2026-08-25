@@ -27,7 +27,7 @@ jobs:
 
       - name: Install frontend dependencies
         working-directory: frontend
-        run: npm install
+        run: npm ci
 
       - name: Build frontend (static export)
         working-directory: frontend
